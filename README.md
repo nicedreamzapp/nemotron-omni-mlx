@@ -21,6 +21,14 @@ Text:   152  tok/s · 17.9 GB peak
                           (M5 Max MacBook Pro, 4-bit LLM + bf16 towers)
 ```
 
+## See it run
+
+A screenshot of a real store cart, read by the model on a laptop with nothing in the cloud:
+
+![demo](docs/demo-preview.gif)
+
+▶ **[Watch the full 35s demo, with narration](docs/nemotron-omni-mlx-demo.mp4)**
+
 ## Parity — verified, not claimed
 
 Every component is tested against NVIDIA's PyTorch reference on the same inputs with the same
