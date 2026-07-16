@@ -1,0 +1,8 @@
+mlx>=0.31.1
+mlx-lm>=0.31.2
+numpy
+pillow
+huggingface_hub
+hf_transfer
+# torch-side reference deps, only needed to run the parity tests:
+#   torch>=2.11 transformers>=5.5 timm einops open_clip_torch pytest

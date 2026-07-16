@@ -1,0 +1,12 @@
+# weights + reference material — never commit (GB-scale, and not ours to redistribute)
+model-4bit/
+text-only/
+weights-bf16/
+reference/
+reference-radio/
+demo/
+download.log
+__pycache__/
+*.pyc
+.pytest_cache/
+article/
