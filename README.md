@@ -27,7 +27,10 @@ A screenshot of a real store cart, read by the model on a laptop with nothing in
 
 ![demo](docs/demo-preview.gif)
 
-▶ **[Watch the full 35s demo, with narration](docs/nemotron-omni-mlx-demo.mp4)**
+▶ **[Watch the full 35-second demo, with narration](https://nicedreamzwholesale.com/2026/07/16/nvidia-nemotron-omni-mlx-apple-silicon-vision-audio-runtime/)** — or grab the [mp4](https://github.com/nicedreamzapp/nemotron-omni-mlx/raw/main/docs/nemotron-omni-mlx-demo.mp4) directly.
+
+The write-up on that page covers why this port exists, what the parity numbers mean, and the
+three traps worth knowing before you attempt it yourself.
 
 ## Parity — verified, not claimed
 
