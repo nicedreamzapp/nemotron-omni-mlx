@@ -51,7 +51,30 @@ truth, where torch-CPU and MLX-CPU both sit at ~1.3e-6) — not a porting error.
 
 ## Install
 
-Requires an Apple Silicon Mac with ≥32 GB (the model needs ~22 GB at peak).
+Requires an Apple Silicon Mac with ≥32 GB (the model needs ~22 GB at peak, measured on an
+M5 Max 128 GB — the only machine it's been tested on).
+
+**A heads-up for 32 GB machines:** macOS caps how much memory Metal will hand the GPU at
+roughly 2/3 of physical RAM (`recommendedMaxWorkingSetSize`). On a 32 GB Mac that's about
+21.3 GB — just under this model's ~22 GB image-path peak. So text and audio may work fine
+while the image path fails, which looks like a model bug but is really the wired-memory
+ceiling. You can check your own ceiling in seconds before downloading anything:
+
+```swift
+import Metal
+let d = MTLCreateSystemDefaultDevice()!
+print(Double(d.recommendedMaxWorkingSetSize) / 1_073_741_824.0)
+```
+
+Save that as `check.swift`, run `swift check.swift`, and it prints your ceiling in GB. If
+it's under ~23, raise it before running the image path:
+
+```bash
+sudo sysctl iogpu.wired_limit_mb=24576
+```
+
+(Resets on reboot.) If you run this on a 32 GB machine, please open an issue with what that
+snippet prints and what happened — real numbers from smaller hardware help everyone.
 
 ```bash
 git clone https://github.com/nicedreamzapp/nemotron-omni-mlx
