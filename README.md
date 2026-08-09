@@ -21,6 +21,10 @@ Text:   152  tok/s · 17.9 GB peak
                           (M5 Max MacBook Pro, 4-bit LLM + bf16 towers)
 ```
 
+> ⚠️ **On a 32 GB Mac, the image path may fail out of the box** — macOS caps GPU memory at
+> ~2/3 of RAM (~21.3 GB), just under the 22.1 GB image-path peak. Text and audio still work.
+> It's a one-line fix: see [the 32 GB heads-up](#install) in Install before reporting a bug.
+
 ## See it run
 
 A screenshot of a real store cart, read by the model on a laptop with nothing in the cloud:
