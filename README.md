@@ -25,6 +25,22 @@ Text:   152  tok/s · 17.9 GB peak
 > ~2/3 of RAM (~21.3 GB), just under the 22.1 GB image-path peak. Text and audio still work.
 > It's a one-line fix: see [the 32 GB heads-up](#install) in Install before reporting a bug.
 
+## Uncensored builds (abliterated)
+
+If you want this model with its refusal training removed, I abliterated it — **language stack
+only, both towers left intact** — and published three MLX sizes. As far as I can tell these are
+the first abliterated Omni that run on a Mac (the other uncensored builds are NVFP4 / GGUF):
+
+| build | size | fits |
+|---|---|---|
+| [4-bit](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-4bit) | ~18 GB | a 32 GB Mac |
+| [8-bit](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-8bit) | ~33 GB | the daily driver |
+| [bf16](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-bf16) | ~62 GB | 64 GB+ |
+
+Refusal on this model is spread across **two blocks (16 and 31)** — a single-layer ablation leaves
+it refusing. Vision and audio are copied through untouched, so all three still see and hear. Run
+them with this same runtime, or with `mlx-vlm` directly.
+
 ## See it run
 
 A screenshot of a real store cart, read by the model on a laptop with nothing in the cloud:
