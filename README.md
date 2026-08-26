@@ -41,6 +41,22 @@ Refusal on this model is spread across **two blocks (16 and 31)** — a single-l
 it refusing. Vision and audio are copied through untouched, so all three still see and hear. Run
 them with this same runtime, or with `mlx-vlm` directly.
 
+**On llama.cpp:** [@wacomctl672](https://huggingface.co/wacomctl672) converted the bf16 build to
+GGUF and ran it at Q4_K_M with the combined audio+vision `mmproj` from ggml-org — text, vision and
+audio all working. Weights:
+[wacomctl672/Nemotron-3-Nano-Omni-30B-Abliterated-MM-GGUF](https://huggingface.co/wacomctl672/Nemotron-3-Nano-Omni-30B-Abliterated-MM-GGUF).
+Converting it yourself takes one patch to `llama.cpp/conversion/nemotron.py` — at the top of
+`modify_tensors` (~line 431):
+
+```python
+if "switch_mlp.fc1.weight" in name:
+    yield f"blk.{bid}.ffn_up_exps.weight", data_torch
+    return
+elif "switch_mlp.fc2.weight" in name:
+    yield f"blk.{bid}.ffn_down_exps.weight", data_torch
+    return
+```
+
 ## See it run
 
 A screenshot of a real store cart, read by the model on a laptop with nothing in the cloud:
