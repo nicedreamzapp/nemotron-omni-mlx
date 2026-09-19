@@ -164,6 +164,16 @@ Three things cost real time. They're documented at length in `PLAN.md`, but the 
 Also: RADIO has enormous outlier activations (final features |max| ≈ 2370 vs median 2.5). Judge
 correctness by cosine similarity, never absolute difference.
 
+## Other ways to do this
+
+- **[mlx-vlm](https://github.com/Blaizzy/mlx-vlm)** runs and fine-tunes a wide range of vision-language models on MLX. If you want image understanding from a different model family, start there.
+- **[mlx-audio](https://github.com/Blaizzy/mlx-audio)** covers speech-to-text and text-to-speech on MLX, if audio is what you're after.
+- **[NVIDIA's own release](https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16)** is the reference, and the way to run this model on NVIDIA GPUs.
+
+## Something off?
+
+If a parity test fails on your Mac, or output looks wrong next to NVIDIA's reference, please open an [issue](https://github.com/nicedreamzapp/nemotron-omni-mlx/issues/new) with your chip, RAM and the failing test. It has only been tested on one machine so far.
+
 ## Credit where it's due
 
 - **[NVIDIA](https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16)** built
