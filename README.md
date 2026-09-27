@@ -2,6 +2,9 @@
 
 **Run NVIDIA's tri-modal Nemotron Omni — text + vision + audio — entirely on an Apple Silicon Mac.**
 
+In plain terms: you give it a prompt plus an image, a video or an audio clip, and it answers in
+text, with nothing sent to the cloud.
+
 [NVIDIA's Nemotron-3-Nano-Omni-30B-A3B](https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16)
 is an open-weights model that sees, hears, and reasons. A 4-bit MLX quantization already exists
 ([mlx-community, by yayr](https://huggingface.co/mlx-community/NVIDIA-Nemotron-3-Nano-Omni-30B-A3B-4bit)),
@@ -22,8 +25,32 @@ Text:   152  tok/s · 17.9 GB peak
 ```
 
 > ⚠️ **On a 32 GB Mac, the image path may fail out of the box** — macOS caps GPU memory at
-> ~2/3 of RAM (~21.3 GB), just under the 22.1 GB image-path peak. Text and audio still work.
+> ~2/3 of RAM (~21.3 GB), just under the 22.1 GB image-path peak. Text and audio should still fit.
 > It's a one-line fix: see [the 32 GB heads-up](#install) in Install before reporting a bug.
+
+## See it run
+
+A screenshot of a real store cart, read by the model on a laptop with nothing in the cloud:
+
+![demo](docs/demo-preview.gif)
+
+▶ **[Watch the full 35-second demo, with narration](https://nicedreamzwholesale.com/2026/07/16/nvidia-nemotron-omni-mlx-apple-silicon-vision-audio-runtime/)** — or grab the [mp4](https://github.com/nicedreamzapp/nemotron-omni-mlx/raw/main/docs/nemotron-omni-mlx-demo.mp4) directly.
+
+The write-up on that page covers why this port exists, what the parity numbers mean, and the
+three traps worth knowing before you attempt it yourself.
+
+## What I built
+
+Matt Macosko wrote the MLX runtime in this repo. The model, weights and reference code are upstream (see [Credit](#credit-where-its-due)).
+
+- [`src/vision.py`](src/vision.py): the C-RADIOv4-H vision tower (ViT-H) plus pixel-shuffle projection, image and video.
+- [`src/audio.py`](src/audio.py): the log-mel frontend and Parakeet Conformer audio tower plus sound projection.
+- [`src/processing.py`](src/processing.py): the processor (dynamic-res image sizing, video frames, audio token counts, EVS retention mask).
+- [`src/omni.py`](src/omni.py): the CLI that splices image, video and audio embeddings into the text backbone and generates.
+- [`scripts/setup_weights.py`](scripts/setup_weights.py): downloads the 4-bit checkpoint and builds the filtered `text-only/` directory `mlx-lm` can load.
+- [`tests/`](tests/): the parity suite against NVIDIA's PyTorch reference.
+
+Upstream, not mine: the model and reference code (NVIDIA), the 4-bit quantization (yayr, mlx-community), MLX and the `nemotron_h` text backbone in `mlx-lm` (Apple's MLX team and contributors).
 
 ## Uncensored builds (abliterated)
 
@@ -56,17 +83,6 @@ elif "switch_mlp.fc2.weight" in name:
     yield f"blk.{bid}.ffn_down_exps.weight", data_torch
     return
 ```
-
-## See it run
-
-A screenshot of a real store cart, read by the model on a laptop with nothing in the cloud:
-
-![demo](docs/demo-preview.gif)
-
-▶ **[Watch the full 35-second demo, with narration](https://nicedreamzwholesale.com/2026/07/16/nvidia-nemotron-omni-mlx-apple-silicon-vision-audio-runtime/)** — or grab the [mp4](https://github.com/nicedreamzapp/nemotron-omni-mlx/raw/main/docs/nemotron-omni-mlx-demo.mp4) directly.
-
-The write-up on that page covers why this port exists, what the parity numbers mean, and the
-three traps worth knowing before you attempt it yourself.
 
 ## Parity — verified, not claimed
 
@@ -124,6 +140,23 @@ Then fetch the weights (~19 GB) and build the filtered text-backbone directory:
 export HF_HUB_ENABLE_HF_TRANSFER=1   # ~30x faster downloads
 python scripts/setup_weights.py       # downloads + prepares model-4bit/ and text-only/
 ```
+
+The CLI also reads the processor and tokenizer config from NVIDIA's reference repo, which it
+expects in `reference/` (change with `--ref-dir`). `setup_weights.py` does not fetch it, so grab
+the small files yourself:
+
+```bash
+huggingface-cli download nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16 \
+  --exclude "*.safetensors" --local-dir reference
+```
+
+To sanity-check the processor with no weights loaded: `python -m src.omni --prompt "Hi" --dry-run`.
+
+Optional extras, not in `requirements.txt`:
+- **Video** needs `decord` or `av` (`pip install av`).
+- **Audio that isn't 16 kHz** gets resampled with `scipy` (`pip install scipy`). 16 kHz WAV works without it.
+- **The parity tests** need the torch-side deps listed at the bottom of `requirements.txt`, NVIDIA's
+  code in `reference/`, and the bf16 shard 1 in `weights-bf16/model-00001-of-00017.safetensors`. No script sets those up yet.
 
 ## Use
 
