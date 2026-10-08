@@ -227,5 +227,5 @@ Model weights are NVIDIA's and carry the
 
 ---
 
-Built in Arcata, CA by [Matt Macosko](https://github.com/nicedreamzapp) · Nice Dreamz LLC ·
+Built in Humboldt, CA by [Matt Macosko](https://github.com/nicedreamzapp) · Nice Dreamz LLC ·
 [more local-AI work](https://nicedreamzwholesale.com/software/)
