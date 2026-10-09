@@ -218,6 +218,8 @@ If a parity test fails on your Mac, or output looks wrong next to NVIDIA's refer
   `nemotron_h` to [mlx-lm](https://github.com/ml-explore/mlx-lm) — the text backbone needed
   nothing from me because of them.
 
+If you want local MLX models behind Claude Code too, I made [claude-code-local](https://github.com/nicedreamzapp/claude-code-local), which runs Claude Code on a Mac with no API key.
+
 ## License
 
 Runtime code: MIT (see `LICENSE`).
