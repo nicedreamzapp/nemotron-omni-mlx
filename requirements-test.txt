@@ -1,0 +1,7 @@
+# Unit test deps (no torch, no weights). On Linux, MLX needs the CPU backend extra.
+mlx[cpu]>=0.31.1; sys_platform == "linux"
+mlx>=0.31.1; sys_platform == "darwin"
+numpy
+pillow
+scipy
+pytest
