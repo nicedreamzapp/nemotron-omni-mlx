@@ -1,0 +1,3 @@
+# Only for building the documentation site (mkdocs build). Not needed to run the model.
+mkdocs==1.6.1
+mkdocs-material[imaging]==9.7.7
