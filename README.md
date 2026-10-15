@@ -18,11 +18,15 @@ token splicing — all ported from NVIDIA's reference implementation and **verif
 against it**, not by vibes.
 
 ```
-Image:  67.7 tok/s · 22.1 GB peak
-Audio:  147  tok/s · 21.0 GB peak
-Text:   152  tok/s · 17.9 GB peak
+End to end through python -m src.omni:
+Image:  67.7  tok/s · 22.1 GB peak
+Audio:  110.5 tok/s · 21.0 GB peak
+Text:   109   tok/s · 17.9 GB peak
+Text only through plain mlx-lm (first smoke test): 152.5 tok/s · 17.9 GB peak
                           (M5 Max MacBook Pro, 4-bit LLM + bf16 towers)
 ```
+
+Numbers are from single runs recorded in [`PLAN.md`](PLAN.md).
 
 > ⚠️ **On a 32 GB Mac, the image path may fail out of the box** — macOS caps GPU memory at
 > ~2/3 of RAM (~21.3 GB), just under the 22.1 GB image-path peak. Text and audio should still fit.

@@ -52,19 +52,15 @@ It is a command-line tool and a small Python package, not an app or a server.
 
 ## Measured numbers
 
-From the README, measured on one machine (M5 Max MacBook Pro, 128 GB), 4-bit LLM:
+From `PLAN.md`, single runs on one machine (M5 Max MacBook Pro, 128 GB), 4-bit LLM, end to end through the CLI:
 
 | Mode | Speed | Peak memory |
 |---|---|---|
 | Image | 67.7 tok/s | 22.1 GB |
-| Audio | 147 tok/s | 21.0 GB |
-| Text | 152 tok/s | 17.9 GB |
+| Audio | 110.5 tok/s | 21.0 GB |
+| Text | 109 tok/s | 17.9 GB |
 
-!!! note "TODO-VERIFY"
-    `PLAN.md` records different end-to-end numbers for the CLI on the same machine:
-    text-only 109 tok/s and audio 110.5 tok/s (the 152.5 tok/s text figure in `PLAN.md` comes from
-    the plain `mlx-lm` smoke test). Peak memory figures agree. Which numbers belong on the front
-    page should be confirmed by re-running.
+The text backbone alone, loaded with plain `mlx-lm` in the first smoke test, ran at 152.5 tok/s.
 
 Parity with NVIDIA's PyTorch reference, from the README and `PLAN.md` (README states 23/23 tests passing):
 

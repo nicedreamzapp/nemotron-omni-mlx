@@ -70,9 +70,9 @@ The speeds, for anyone keeping score:
 
 | Mode | Speed | Memory |
 |---|---|---|
-| Text only | **152 tok/s** | 17.9 GB |
+| Text only | **109 tok/s** | 17.9 GB |
 | With an image | **67.7 tok/s** | 22.1 GB |
-| With audio | **147 tok/s** | 21.0 GB |
+| With audio | **110.5 tok/s** | 21.0 GB |
 
 The whole thing lives in about 22 GB at its hungriest. That fits on a Mac you can buy today.
 

@@ -24,9 +24,9 @@ Peak memory on the test machine, from the README: 17.9 GB text, 21.0 GB audio, 2
 
 ## How fast is it?
 
-README figures on the M5 Max: 152 tok/s text, 147 tok/s audio, 67.7 tok/s image. `PLAN.md`
-records lower end-to-end CLI numbers for text (109 tok/s) and audio (110.5 tok/s). TODO-VERIFY:
-re-run to settle which set is current.
+On the M5 Max, end to end through the CLI (`PLAN.md`): 109 tok/s text, 110.5 tok/s audio,
+67.7 tok/s image. The text backbone alone through plain `mlx-lm` ran at 152.5 tok/s in the first
+smoke test. These are single runs on one machine.
 
 ## Does it support video?
 
