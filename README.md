@@ -1,5 +1,7 @@
 # nemotron-omni-mlx
 
+[![ci](https://github.com/nicedreamzapp/nemotron-omni-mlx/actions/workflows/ci.yml/badge.svg)](https://github.com/nicedreamzapp/nemotron-omni-mlx/actions/workflows/ci.yml)
+
 **Run NVIDIA's tri-modal Nemotron Omni — text + vision + audio — entirely on an Apple Silicon Mac.**
 
 In plain terms: you give it a prompt plus an image, a video or an audio clip, and it answers in
@@ -52,7 +54,7 @@ Matt Macosko wrote the MLX runtime in this repo. The model, weights and referenc
 - [`src/processing.py`](src/processing.py): the processor (dynamic-res image sizing, video frames, audio token counts, EVS retention mask).
 - [`src/omni.py`](src/omni.py): the CLI that splices image, video and audio embeddings into the text backbone and generates.
 - [`scripts/setup_weights.py`](scripts/setup_weights.py): downloads the 4-bit checkpoint and builds the filtered `text-only/` directory `mlx-lm` can load.
-- [`tests/`](tests/): the parity suite against NVIDIA's PyTorch reference.
+- [`tests/`](tests/): the parity suite against NVIDIA's PyTorch reference, plus unit tests that run in CI with no weights.
 
 Upstream, not mine: the model and reference code (NVIDIA), the 4-bit quantization (yayr, mlx-community), MLX and the `nemotron_h` text backbone in `mlx-lm` (Apple's MLX team and contributors).
 
@@ -91,7 +93,7 @@ elif "switch_mlp.fc2.weight" in name:
 ## Parity — verified, not claimed
 
 Every component is tested against NVIDIA's PyTorch reference on the same inputs with the same
-weights. `pytest tests/` — **23/23 passing**.
+weights. The 23 parity tests in `tests/test_*_parity.py` — **23/23 passing** on the M5 Max.
 
 | Component | Compared against | Result |
 |---|---|---|
@@ -161,6 +163,9 @@ Optional extras, not in `requirements.txt`:
 - **Audio that isn't 16 kHz** gets resampled with `scipy` (`pip install scipy`). 16 kHz WAV works without it.
 - **The parity tests** need the torch-side deps listed at the bottom of `requirements.txt`, NVIDIA's
   code in `reference/`, and the bf16 shard 1 in `weights-bf16/model-00001-of-00017.safetensors`. No script sets those up yet.
+  Without them those tests skip and say what's missing.
+- **The unit tests** need none of that: `pip install -r requirements-test.txt && pytest`. They use tiny
+  random-weight towers and a stub tokenizer, run on MLX's CPU backend, and are what CI runs on Linux.
 
 ## Use
 
