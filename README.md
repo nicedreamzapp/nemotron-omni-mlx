@@ -34,7 +34,8 @@ Numbers are from single runs recorded in [`PLAN.md`](PLAN.md).
 > ~2/3 of RAM (~21.3 GB), just under the 22.1 GB image-path peak. Text and audio should still fit.
 > It's a one-line fix: see [the 32 GB heads-up](#install) in Install before reporting a bug.
 
-## See it run
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s01-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s01-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s01-banner.svg" width="100%" alt="01. See it run. A real store cart, read on a laptop"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s01-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s01-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s01-r1.svg" width="100%" alt="67.7 67.7 tok/s. image, end to end. 110.5 110.5 tok/s. audio, end to end. 109 109 tok/s. text, end to end."></picture>
 
 A screenshot of a real store cart, read by the model on a laptop with nothing in the cloud:
 
@@ -45,7 +46,10 @@ A screenshot of a real store cart, read by the model on a laptop with nothing in
 The write-up on that page covers why this port exists, what the parity numbers mean, and the
 three traps worth knowing before you attempt it yourself.
 
-## What I built
+<img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s01-rule.svg" width="100%" alt="">
+
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s02-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s02-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s02-banner.svg" width="100%" alt="02. What I built. A pure MLX runtime for the vision and audio towers"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s02-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s02-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s02-r1.svg" width="100%" alt="Vision tower. C-RADIOv4-H ViT-H plus pixel-shuffle projection. Audio tower. Log-mel frontend and Parakeet Conformer. Processor and CLI. Splices image, video and audio into the text backbone."></picture>
 
 Matt Macosko wrote the MLX runtime in this repo. The model, weights and reference code are upstream (see [Credit](#credit-where-its-due)).
 
@@ -58,7 +62,7 @@ Matt Macosko wrote the MLX runtime in this repo. The model, weights and referenc
 
 Upstream, not mine: the model and reference code (NVIDIA), the 4-bit quantization (yayr, mlx-community), MLX and the `nemotron_h` text backbone in `mlx-lm` (Apple's MLX team and contributors).
 
-## Uncensored builds (abliterated)
+### Uncensored builds (abliterated)
 
 If you want this model with its refusal training removed, I abliterated it — **language stack
 only, both towers left intact** — and published three MLX sizes. As far as I can tell these are
@@ -90,7 +94,10 @@ elif "switch_mlp.fc2.weight" in name:
     return
 ```
 
-## Parity — verified, not claimed
+<img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s02-rule.svg" width="100%" alt="">
+
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s03-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s03-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s03-banner.svg" width="100%" alt="03. Parity. Verified against NVIDIA&#x27;s PyTorch reference"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s03-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s03-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s03-r1.svg" width="100%" alt="23/23 23/23. parity tests passing on the M5 Max. 0.99996 0.99996. vision tower cosine, min per token. 0.99999 0.99999. audio tower cosine, min per frame."></picture>
 
 Every component is tested against NVIDIA's PyTorch reference on the same inputs with the same
 weights. The 23 parity tests in `tests/test_*_parity.py` — **23/23 passing** on the M5 Max.
@@ -107,7 +114,11 @@ The GPU-vs-CPU gap on vision is Metal's lossy fp32 matmul (~7.7e-4 rel. vs a flo
 truth, where torch-CPU and MLX-CPU both sit at ~1.3e-6) — not a porting error. The
 `test_cpu_stream_is_graph_exact` test locks that down as a regression guard.
 
-## Install
+<img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s03-rule.svg" width="100%" alt="">
+
+<a id="install"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s04-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s04-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s04-banner.svg" width="100%" alt="04. Install and use. Setup, usage and porting notes"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s04-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s04-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s04-r1.svg" width="100%" alt="4-bit checkpoint. scripts/setup_weights.py downloads it. python -m src.omni. The CLI for image, video and audio. 32 GB Macs. The image path may need a one-line fix."></picture>
 
 Requires an Apple Silicon Mac with ≥32 GB (the model needs ~22 GB at peak, measured on an
 M5 Max 128 GB — the only machine it's been tested on).
@@ -167,7 +178,7 @@ Optional extras, not in `requirements.txt`:
 - **The unit tests** need none of that: `pip install -r requirements-test.txt && pytest`. They use tiny
   random-weight towers and a stub tokenizer, run on MLX's CPU backend, and are what CI runs on Linux.
 
-## Use
+### Use
 
 ```bash
 # See
@@ -186,7 +197,7 @@ python -m src.omni --image photo.jpg --audio clip.wav --prompt "Do these match?"
 It's a reasoning model — it emits a `<think>` block before the answer. Give it room
 (`--max-tokens 900`) or you'll get cut off mid-thought.
 
-## Notes for anyone porting this themselves
+### Notes for anyone porting this themselves
 
 Three things cost real time. They're documented at length in `PLAN.md`, but the short version:
 
@@ -206,17 +217,21 @@ Three things cost real time. They're documented at length in `PLAN.md`, but the 
 Also: RADIO has enormous outlier activations (final features |max| ≈ 2370 vs median 2.5). Judge
 correctness by cosine similarity, never absolute difference.
 
-## Other ways to do this
+<img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s04-rule.svg" width="100%" alt="">
+
+<a id="credit-where-its-due"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s05-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s05-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s05-banner.svg" width="100%" alt="05. Credit and license. Built on NVIDIA, yayr and Apple&#x27;s MLX team"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s05-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s05-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s05-r1.svg" width="100%" alt="NVIDIA. Open weights and reference code. MIT runtime. The repo ships no weights."></picture>
 
 - **[mlx-vlm](https://github.com/Blaizzy/mlx-vlm)** runs and fine-tunes a wide range of vision-language models on MLX. If you want image understanding from a different model family, start there.
 - **[mlx-audio](https://github.com/Blaizzy/mlx-audio)** covers speech-to-text and text-to-speech on MLX, if audio is what you're after.
 - **[NVIDIA's own release](https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16)** is the reference, and the way to run this model on NVIDIA GPUs.
 
-## Something off?
+### Something off?
 
 If a parity test fails on your Mac, or output looks wrong next to NVIDIA's reference, please open an [issue](https://github.com/nicedreamzapp/nemotron-omni-mlx/issues/new) with your chip, RAM and the failing test. It has only been tested on one machine so far.
 
-## Credit where it's due
+### Credit where it's due
 
 - **[NVIDIA](https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16)** built
   the model and released the weights *and* the reference code openly. This port is a
@@ -229,7 +244,7 @@ If a parity test fails on your Mac, or output looks wrong next to NVIDIA's refer
 
 If you want local MLX models behind Claude Code too, I made [claude-code-local](https://github.com/nicedreamzapp/claude-code-local), which runs Claude Code on a Mac with no API key.
 
-## License
+### License
 
 Runtime code: MIT (see `LICENSE`).
 Model weights are NVIDIA's and carry the
@@ -240,3 +255,5 @@ Model weights are NVIDIA's and carry the
 
 Built in Humboldt, CA by [Matt Macosko](https://github.com/nicedreamzapp) · Nice Dreamz LLC ·
 [more local-AI work](https://nicedreamzwholesale.com/software/)
+
+<img src="https://raw.githubusercontent.com/nicedreamzapp/nemotron-omni-mlx/main/assets/readme/s05-rule.svg" width="100%" alt="">
