@@ -22,7 +22,6 @@ This repo is an MLX runtime for someone else's model. The pieces it stands on:
   GGUF and documented running it on llama.cpp.
 - **[mlx-vlm](https://github.com/Blaizzy/mlx-vlm)** and **[mlx-audio](https://github.com/Blaizzy/mlx-audio)**
   by Blaizzy are the README's suggested alternatives for other model families.
-- **Anthropic's Claude** appears as co-author on the commits in this repo's history.
 
 The MLX runtime in `src/`, `scripts/` and `tests/` was written by
 [Matt Macosko](https://github.com/nicedreamzapp) (Nice Dreamz LLC). If you want local MLX models
