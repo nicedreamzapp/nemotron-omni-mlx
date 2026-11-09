@@ -2,6 +2,13 @@
 
 [![ci](https://github.com/nicedreamzapp/nemotron-omni-mlx/actions/workflows/ci.yml/badge.svg)](https://github.com/nicedreamzapp/nemotron-omni-mlx/actions/workflows/ci.yml)
 
+<!-- live-stats:start -->
+
+⭐ **3,691** GitHub stars ([github.com/nicedreamzapp](https://github.com/nicedreamzapp)) · ⬇️ **40,871** all-time downloads ([huggingface.co/divinetribe](https://huggingface.co/divinetribe))<br>
+Models on Hugging Face: [Nemotron-3-Nano-Omni-30B-Abliterated-MM-bf16](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-bf16) · [Nemotron-3-Nano-Omni-30B-Abliterated-MM-8bit](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-8bit) · [Nemotron-3-Nano-Omni-30B-Abliterated-MM-4bit](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-4bit) (⬇️ **1,912** all-time downloads) · this repo ⭐ **13** stars
+
+<!-- live-stats:end -->
+
 **Run NVIDIA's tri-modal Nemotron Omni — text + vision + audio — entirely on an Apple Silicon Mac.**
 
 In plain terms: you give it a prompt plus an image, a video or an audio clip, and it answers in
