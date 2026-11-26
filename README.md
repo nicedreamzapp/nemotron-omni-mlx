@@ -4,7 +4,7 @@
 
 <!-- live-stats:start -->
 
-⭐ **3,756** GitHub stars ([github.com/nicedreamzapp](https://github.com/nicedreamzapp)) · ⬇️ **63,789** all-time downloads ([huggingface.co/divinetribe](https://huggingface.co/divinetribe))<br>
+⭐ **3,756** GitHub stars ([github.com/nicedreamzapp](https://github.com/nicedreamzapp)) · ⬇️ **64,087** all-time downloads ([huggingface.co/divinetribe](https://huggingface.co/divinetribe))<br>
 Models on Hugging Face: [Nemotron-3-Nano-Omni-30B-Abliterated-MM-bf16](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-bf16) · [Nemotron-3-Nano-Omni-30B-Abliterated-MM-8bit](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-8bit) · [Nemotron-3-Nano-Omni-30B-Abliterated-MM-4bit](https://huggingface.co/divinetribe/Nemotron-3-Nano-Omni-30B-Abliterated-MM-4bit) (⬇️ **3,960** all-time downloads) · this repo ⭐ **14** stars
 
 <!-- live-stats:end -->
